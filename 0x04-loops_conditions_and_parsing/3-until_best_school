@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Using an until loop to print a string
+
+a=100
+until [ $a -eq 0 ]; do
+	echo "Best School"
+	a=$((a - 10))
+done
