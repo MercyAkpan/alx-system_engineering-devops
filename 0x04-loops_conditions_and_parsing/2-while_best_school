@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This is to print Best School 10 times using the while loop.
+
+a=10
+while [ $a -ne 0 ]; do
+	echo "Best School"
+	a=$((a - 1))
+done
