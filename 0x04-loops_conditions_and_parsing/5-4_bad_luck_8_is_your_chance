@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This is to print Best School 10 times using the while loop.
+#M_I_N_E
+a=1 #var
+while [ $a -ne 10 ]; do #This is the syntax: while [ $var -ne 0 ]; do
+        if [ $a == 4 ] #NB: if ```[[ $((a % 4)) -eq 0 ]]``` is : for any iteration multiple of 4 - print bad luck
+        then
+                echo "bad luck"
+	elif [ $a == 8 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School" # echo "string"
+	fi
+	a=$((a + 1)) #increment: var = $((var +/- 1))
+done
