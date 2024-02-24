@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#M_I_N_E
+hour=0
+min=1
+#This displays the hours and minutes of a clock from 0hour : 1minute to 12hours :59minutes
+while [ $hour -le 12 ]; do
+	echo "Hour: $hour"
+	min=1 #NB: Ensure to RESET min to 0, else it would always be -ge(>=) 59 after 0 hour iteration.
+	while [ $min -le 59 ]; do
+		echo "$min"
+		min=$((min + 1))
+	done #inner loop done
+	hour=$((hour + 1))
+done #outer loop done
+
