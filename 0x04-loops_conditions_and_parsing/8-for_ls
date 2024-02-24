@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #M_I_N_E
-list="$(ls ./*)"
-for i in $list; do
-	find "$i" | cut -d '-' -f 2-
+for i in *; do
+	 ls "$i" | cut -d '-' -f 2-
 done
 
