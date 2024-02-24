@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #M_I_N_E
-for i in *; do
-	 find  "$i" | cut -d '-' -f 2-
+for i in *; do #i.e iterate through entire files (not sure how to handle hidden files though)
+	 find  "$i" | cut -d '-' -f 2- # this finds $i, and cuts based on delimitter - and starts fron 2nd field 
+	 			       # onwards
 done
 
