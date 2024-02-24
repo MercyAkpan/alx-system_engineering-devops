@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #M_I_N_E
 for i in *; do
-	 ls "$i" | cut -d '-' -f 2-
+	 find  "$i" | cut -d '-' -f 2-
 done
 
