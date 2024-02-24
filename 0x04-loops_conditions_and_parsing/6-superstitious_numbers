@@ -4,12 +4,12 @@ iter=1
 message4="bad luck from China"
 message9="bad luck from Japan"
 message17="bad luck from Italy"
-while [ $iter -ne 20 ]; do #&& [ $iter -ne 9 ] && [ $iter -ne 17 ]; do
+while [ $iter -ne 21 ]; do #&& [ $iter -ne 9 ] && [ $iter -ne 17 ]; do
 	echo "$iter"
 	case $iter in
-    4) echo "$message4 :$iter";;
-    9) echo "$message9 :$iter";;
-    17) echo "$message17 : $iter";;
+    4) echo "$message4";;
+    9) echo "$message9";;
+    17) echo "$message17";;
   esac
   	iter=$((iter + 1))
 done
