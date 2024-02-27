@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script solves the FizzBuzz challenge for the first 100 natural numbers.
+#R_E_-_D_O
+
+for iter in {1..100}; do
+	if [ "$((iter % 3))" -eq 0 ] && [ "$((iter % 5))" -eq 0 ]; then
+		echo "FizzBuzz"
+
+	elif [ "$((iter % 3))" -eq 0 ]; then
+		echo "Fizz"
+
+	elif [ "$((iter % 5))" -eq 0 ]; then
+		echo "Buzz"
+	
+	else
+		echo "$iter"
+	fi
+
+done
