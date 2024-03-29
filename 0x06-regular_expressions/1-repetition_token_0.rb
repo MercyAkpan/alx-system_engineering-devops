@@ -7,5 +7,5 @@ var = ARGV.join("")
 #type <string>
 var.scan(as) do |match| #.scan is a string method to scan for non-overlapping matches substrings
                                                 #then each substring is held by the 'match' variable
-#  print match #prints each match
+  print match #prints each match
 end
