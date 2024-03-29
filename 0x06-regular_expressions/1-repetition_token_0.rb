@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 #MINE
-as = /(hbt{2,5}n)/
+as = /(hbt{2,5}n)/ #NOTE:.scan(line-9), returns array of captured indivdual groups
+#so /(hbt{2,5}n)/, gives array of -[substring]
+#and /(hb(t){2,5}n)/, gives an array(var) of --[substring, t], as "t", is an individual, 
+#capturing group.
 var = ARGV.join("")
 #puts (var)
 #puts (var)
