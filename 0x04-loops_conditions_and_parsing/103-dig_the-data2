@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script parses an Apache Web server log and prints the IP and HTTP status
+#R_E_-_D_O
+awk '{print $1,$9}' apache-access.log | sort | uniq -c | sort -r
+# This is print out IP and STATUS, then uniq ones, the sort in reverse
