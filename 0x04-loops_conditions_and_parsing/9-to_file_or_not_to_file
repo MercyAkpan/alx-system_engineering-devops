@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 # This script gives information about a `school` file
-#R_E_-_D_O
-if [ -e "school" ]; then
+#Mine -- 
+#-e -> is there a file/dir called school
+#-s -> is the file empty NOTE: Directory cannot be empty
+#-f -> is this a regukar file (-d), is for directory check.
+if [ -e "school" ]; then # end of outer if check
 	echo "school file exists"
-    if [ ! -s "school" ]; then
+    if [ ! -s "school" ]; then # This is an inner if check
 	    echo "school file is empty"
     else
 	    echo "school file is not empty"
-    fi
+    fi # end of inner if check
 else 
      echo "school file does not exist"
-fi
+fi #end of outer if check
 if [ -f "school" ]; then
 	echo "school is a regular file"
 fi
