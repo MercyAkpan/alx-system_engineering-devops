@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # This script parses an Apache Web server log and prints the IP and HTTP status
-# R_E_-_D_O
+# MINE
 awk '{print $1 " " $9}'  apache-access.log
 # awk '{print $1,$9}' apache-access.log
+# I would use -f, if the awk script is in another file
+# or -F ':' , to make : a delimitter
