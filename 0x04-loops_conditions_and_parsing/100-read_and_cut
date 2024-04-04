@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # This script displays the content of the file /etc/passwd. It displays
 #R_E_-_D_O
+# read -r reads the current line , and reads as raw input (-r), not interepreting "\", as an escape character.
+f_name="/etc/passwd" # "", to control and handle spaces and special characters, within file name 
 while read -r; do
-	cut -f1,4,6 -d':'
-done < /etc/passwd
+    cut -f1,4,6 -d':' # read auto, prints output of code block on terminal (without echo)
+done < "$f_name" # >> output.txt ,to output into a file
+                 #  "", to control and handle spaces and special characters, within file name
