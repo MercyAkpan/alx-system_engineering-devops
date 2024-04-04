@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Print a story with the /etc/passwd file
-#MINE
-#This utilises the bash $IFS as a ":" delimitter
-#So all fields will be separated by the ":" delimitter, and assigned to respcetive vars == USER, HOME_DIR, G_ID...
-while IFS=":" read -r USER PSSWD U_ID G_ID USER_INFO HOME_DIR COMMAND_SHELL; do
-    echo "The user $USER is part of the $G_ID gang, lives in $HOME_DIR and rides $COMMAND_SHELL. $U_ID's place is protected by the passcode $PSSWD, more info about the user here: $USER_INFO" 
-# The above would be printed for every line in the file provided
-done < /etc/passwd
