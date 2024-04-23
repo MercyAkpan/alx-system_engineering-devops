@@ -1,3 +1,4 @@
+# This puppet manifest is to abruptly terminate a running process 
 file { '/home/mercyakpan/killmenow': #absolute path of file
     ensure => 'present', #ensures file is present
 }
