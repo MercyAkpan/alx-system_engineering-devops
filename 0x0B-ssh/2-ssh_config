@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-# NOt sure
+#
+Host myserver
+    HostName 100.25.141.80
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
