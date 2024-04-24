@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 #To generate a new SSH key pair
 ssh-keygen -t rsa -b 4096 -f school -N betty
+# -t => type of key to create
+# -b => bytes
+# -f => private key file
+# -N => passphrase
