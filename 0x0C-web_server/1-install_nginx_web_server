@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This is a trial
+sudo ufw allow 'Nginx HTTP'
+# This creates a new landing page for your sevrver.
+echo "Hello World!" | sudo tee  /var/www/html/index.html
+# This applies changes to Nginx while its still running
+sudo service nginx reload
