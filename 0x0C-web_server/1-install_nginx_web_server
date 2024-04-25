@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # This is a trial
+sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
 # This creates a new landing page for your sevrver.
 echo "Hello World!" | sudo tee  /var/www/html/index.html
