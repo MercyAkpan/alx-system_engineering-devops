@@ -4,7 +4,7 @@ sudo apt-get update
 sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
 # This creates a new landing page for your sevrver.
-echo "Hello World!" | sudo tee  /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 # to apply changes while its still running - reload
 sudo sed  -i '/server_name _;/a\\trewrite ^\/redirect_me  https:\/\/www.youtube.com permanent;' /etc/nginx/sites-enabled/default
 sudo service nginx restart
