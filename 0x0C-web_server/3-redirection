@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # comment
-# This installs nginx on server if not present
 sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
 # This creates a new landing page for your sevrver.
 echo "Hello World!" | sudo tee  /var/www/html/index.html
-# This applies changes to Nginx and restarts it 
 # to apply changes while its still running - reload
 sudo sed  -i "/server_name _;/a\
         rewrite ^/redirect_me  https://rumble.com permanent;
