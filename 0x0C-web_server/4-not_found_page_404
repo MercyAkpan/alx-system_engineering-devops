@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+./3-redirection
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_error404.html
+not_found="server_name _;\n\terror_page 404 /custom_error404.html;\n"
+sudo sed -i "s#server_name _;#$not_found#" /etc/nginx/sites-enabled/default 
+sudo service nginx restart
