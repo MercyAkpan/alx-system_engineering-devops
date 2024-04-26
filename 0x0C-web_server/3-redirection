@@ -7,6 +7,7 @@ sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" | sudo tee  /var/www/html/index.html
 # This applies changes to Nginx and restarts it 
 # to apply changes while its still running - reload
-sudo sed  -i '/server_name _;/a\trewrite ^/redirect_me  https://rumble.com permanent;
-'  /etc/nginx/sites-enabled/default
+sudo sed  -i '/server_name _;/a\
+        rewrite ^/redirect_me  https://rumble.com permanent;
+' /etc/nginx/sites-enabled/default
 sudo service nginx restart
