@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-bash ./1-install_nginx_web_server
-sudo sed  -i '/server_name _;/a\
-\trewrite ^/redirect_me  https://rumble.com permanent;
+./1-install_nginx_web_server
+sudo sed  -i '/server_name _;/a\trewrite ^/redirect_me  https://rumble.com permanent;
 '  /etc/nginx/sites-enabled/default
 sudo service nginx restart
