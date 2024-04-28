@@ -1,74 +1,33 @@
-# A manifest that configures an Nginx web server with the following:
-# - A root page that displays "Hello World!"
-# - A redirection page that redirects to https://lzcorp-landing-page.vercel.app/
-# - A 404 page that displays "Ceci n'est pas une page"
+$package = 'Nginx HTTP'
+$text = 'Hello World'
+$new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\trewrite ^/redirect_me https://www.google.com permanent;\n\t}'
 
-$nginx_package_name = 'nginx'
-$nginx_service_name = 'nginx'
-$root_dir = '/usr/share/nginx/html'
-$config_file = '/etc/nginx/sites-available/default'
-$server_config = @(END)
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    server_name _;
-    root /var/www/html;
-
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-
-    error_page 404 /404.html;
-    location = /404.html {
-        root /usr/share/nginx/html;
-        internal;
-    }
-
-    location /redirect {
-        return 301 https://lzcorp-landing-page.vercel.app/;
-    }
+exec { 'install_nginx':
+  command => 'sudo apt install -y nginx',
+  unless  => 'dpkg -l nginx',
+  path    => ['/bin', '/usr/bin'],
 }
-END
-
-exec { 'apt-get update':
-  command => '/usr/bin/apt-get update',
-  path    => ['/usr/bin', '/usr/sbin'],
+exec { 'allow_nginx_traffic':
+  command => "sudo ufw allow \"$package\"",
+#  command => "sudo ufw allow \"$package\"",
+  path    => ['/bin', '/usr/bin'],
 }
 
-package { $nginx_package_name:
-  ensure  => installed,
-  require => Exec['apt-get update'],
+exec { 'set_up_nginx_content':
+  command => "echo $text | sudo tee /var/www/html/index.html",
+  path    => ['/bin', '/usr/bin'],
 }
 
-file { '/var/www/html/index.html':
-  ensure  => file,
-  content => "Hello World!\n",
-  require => Package[$nginx_package_name],
-}
+#exec { 'set_up_nginxcontent':
+#  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default",
+#  path    => ['/bin', '/usr/bin'],
+#}
 
-file { "${root_dir}/404.html":
-  ensure  => file,
-  content => "Ceci n'est pas une page\n",
-  require => Package[$nginx_package_name],
-}
 
-file { $config_file:
-  ensure  => present,
-  content => $server_config,
-  require => Package[$nginx_package_name],
+exec { 'restart_nginx':
+  command => 'sudo service nginx restart',
+  path    => ['/bin', '/usr/bin'],
 }
-
-exec { 'nginx-restart':
-  command => '/usr/sbin/service nginx restart',
-  path    => ['/usr/bin', '/usr/sbin'],
-  require => File[$config_file],
-}
-
-service { $nginx_service_name:
-  ensure  => running,
-  enable  => true,
-  require => Exec['nginx-restart'],
-}
+#exec { 'set_up_nginx':
+#       'echo "$landing_text" | sudo tee  /var/www/html/index.html',
+#}
