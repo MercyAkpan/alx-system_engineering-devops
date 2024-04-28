@@ -1,6 +1,6 @@
 $package = 'Nginx HTTP'
-$text = 'Hello World'
-$new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\trewrite ^/redirect_me https://www.google.com permanent;\n\t}'
+$text = 'Hello World!'
+$new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://www.google.com permanent;\n\t}'
 
 exec { 'install_nginx':
   command => 'sudo apt install -y nginx',
@@ -18,10 +18,10 @@ exec { 'set_up_nginx_content':
   path    => ['/bin', '/usr/bin'],
 }
 
-#exec { 'set_up_nginxcontent':
-#  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default",
-#  path    => ['/bin', '/usr/bin'],
-#}
+exec { 'set_up_nginxcontent':
+  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default",
+  path    => ['/bin', '/usr/bin'],
+}
 
 
 exec { 'restart_nginx':
