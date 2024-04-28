@@ -1,5 +1,5 @@
 $package = 'Nginx HTTP'
-$text = 'Hello World'
+$text = 'Hello World!'
 #$new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\trewrite ^/redirect_me https://www.google.com permanent;\n\t}'
 $new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://www.mountainoffire.org ;\n\t}'
 exec { 'install_nginx':
