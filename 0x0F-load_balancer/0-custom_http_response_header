@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Replace 'your_domain.com' with your Nginx server's domain name
 #SERVER="54.210.109.108"
 #
