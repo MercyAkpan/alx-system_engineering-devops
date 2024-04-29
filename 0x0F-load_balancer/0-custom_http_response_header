@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Replace 'your_domain.com' with your Nginx server's domain name
 #SERVER="54.210.109.108"
 #
 ## Replace 'new_value' with the value you want for the custom header
 #NEW_VALUE="X-Served-By"
 #
-new_string="server_name _;\n\tadd_header X-Served-By $(hostname);\n\t"
+new_string="add_header X-Served-By "$(hostname)";\n\tserver_name _;"
 ## Send a request to the server, setting the custom header
 sudo sed -i "s#server_name _;#$new_string#"  /etc/nginx/sites-enabled/default
 #curl -X GET -H "X-Custom-Header: $NEW_VALUE" http://$SERVER/
