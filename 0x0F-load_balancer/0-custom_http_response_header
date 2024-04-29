@@ -7,7 +7,8 @@
 #
 new_string="add_header X-Served-By \$hostname;\n\tserver_name _;"
 ## Send a request to the server, setting the custom header
-sudo sed -i "s#server_name _;#$new_string#"  /etc/nginx/sites-enabled/default
+#sudo sed -i "s#server_name _;#$new_string#"  /etc/nginx/sites-enabled/default
+sudo sed -i "s#server {#server {\n\tadd_header X-Served-By \$hostname;#" /etc/nginx/sites-enabled/default
 #curl -X GET -H "X-Custom-Header: $NEW_VALUE" http://$SERVER/
 sudo nginx -t
 sudo service nginx restart 
