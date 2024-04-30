@@ -9,7 +9,6 @@ echo "global
 defaults
     # Default settings
     mode http
-
     timeout connect 5s
     timeout client 50s
     timeout server 50s
@@ -21,6 +20,7 @@ frontend http_front
 
 backend http_back
     mode http
+    balance roundrobin
     server web1 54.173.64.143:80 check
     server web2 54.210.109.108:80 check
 
