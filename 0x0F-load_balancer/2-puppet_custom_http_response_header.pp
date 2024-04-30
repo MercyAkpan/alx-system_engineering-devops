@@ -2,7 +2,6 @@
 $package = 'Nginx HTTP'
 $text = 'Hello World!'
 $new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\trewrite ^/redirect_me https://www.google.com permanent;\n\t}'
-#$new_string = 'server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://www.mountainoffire.org ;\n\t}'
 exec { 'install_nginx':
   command => 'sudo apt install -y nginx',
   unless  => 'dpkg -l nginx',
@@ -10,7 +9,6 @@ exec { 'install_nginx':
 }
 exec { 'allow_nginx_traffic':
   command => "sudo ufw allow \"$package\"",
-#  command => "sudo ufw allow \"$package\"",
   path    => ['/bin', '/usr/bin'],
 }
 
@@ -20,13 +18,11 @@ exec { 'set_up_landing_content':
 }
 
 exec { 'redirect':
-#  command => "sudo sed -i \"s#server {#server {\n\tadd_header X-Served-By \$hostname;#\" ~/2-ver",
-  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default", 
+  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default",
   path    => ['/bin', '/usr/bin'],
-}        
+}
 exec { 'adding_headers':
-#  command => "sudo sed -i \"s#server {#server {\n\tadd_header X-Served-By \$hostname;#\" ~/2-ver",
-  command     => "sudo sed -i '/server {/a \\\tadd_header X-Served-By \$hostname;' /etc/nginx/sites-enabled/default",
+  command => "sudo sed -i '/server {/a \\\tadd_header X-Served-By \$hostname;' /etc/nginx/sites-enabled/default",
   path    => ['/bin', '/usr/bin'],
 }
 
