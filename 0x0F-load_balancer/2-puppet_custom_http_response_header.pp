@@ -21,10 +21,10 @@ exec { 'set_up_landing_content':
 
 exec { 'redirect':
 #  command => "sudo sed -i \"s#server {#server {\n\tadd_header X-Served-By \$hostname;#\" ~/2-ver",
-  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default"   
+  command => "sudo sed -i \"s#server_name _;#$new_string#\"  /etc/nginx/sites-enabled/default", 
   path    => ['/bin', '/usr/bin'],
 }        
-exec { 'set_up_nginxcontent':
+exec { 'adding_headers':
 #  command => "sudo sed -i \"s#server {#server {\n\tadd_header X-Served-By \$hostname;#\" ~/2-ver",
   command     => "sudo sed -i '/server {/a \\\tadd_header X-Served-By \$hostname;' /etc/nginx/sites-enabled/default",
   path    => ['/bin', '/usr/bin'],
