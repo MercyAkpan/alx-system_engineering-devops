@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This is a bash function, to lists all the subdomains of a domain name 
+    list_subdomains=("www" "lb-01" "web-01" "web-02")
+    domain="mercyakpan.tech"
+sub_domains() {
+    sub_domain="$1"
+    full="${sub_domain}.${domain}"
+#    Ip_address=$(dig $full | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $NF}')
+    # Run the dig command and capture the output, then extract the last two fields
+    read -r record Ip <<< "$(dig "$full" | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $(NF-1), $NF}')"
+    echo "The subdomain $sub_domain is a $record record and points to $Ip"
+}
+#sub_domains "$1" 
+
+
+if [ -z "$1" ]; then
+    for sub_domain in "${list_subdomains[@]}"; do
+        sub_domains "$sub_domain"
+    done
+else
+    # If subdomain provided, get IP address for that subdomain
+    sub_domains "$1"
+fi

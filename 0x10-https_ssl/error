@@ -1,0 +1,22 @@
+# Define a function to perform some task that may raise an error
+perform_task() {
+    # Attempt to perform the task
+    echo "Performing task..."
+    # Simulate an error (divide by zero)
+    result=$((10 / 0))
+}
+
+# Define a function to handle errors
+handle_error() {
+    local error_message="$1"
+    if [ -n "$error_message" ]; then
+        echo "An error occurred: $error_message"
+    fi
+}
+
+# Set up a trap to catch errors
+trap 'handle_error "Division by zero error occurred"' ERR
+
+# Try to perform the task
+perform_task
+

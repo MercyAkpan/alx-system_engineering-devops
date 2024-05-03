@@ -1,0 +1,2 @@
+to move a line or group of lines (visual_mode) to above a specific line :m line_number
+to move a line up or down :m +3
