@@ -15,7 +15,9 @@ sub_domains() {
     fi
     # Run the dig command and capture the output, then extract the last two fields
     read -r record Ip <<< "$(dig "$full" | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $(NF-1), $NF}')"
-    echo "The subdomain $sub_domain is a $record record and points to $Ip"
+#    echo "The subdomain $sub_domain is a $record record and points to $Ip"
+    printf "The subdomain %s is a %s record and points to %s\n" "$sub_domain" "$record" "$Ip"
+
 }
 #sub_domains "$1" 
 
