@@ -3,21 +3,27 @@
     list_subdomains=("www" "lb-01" "web-01" "web-02")
     domain="mercyakpan.tech"
 sub_domains() {
-    sub_domain="$1"
-    full="${sub_domain}.${domain}"
-#    Ip_address=$(dig $full | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $NF}')
+    local sub_domain="$2"
+    local root_domain="$1"
+#    echo "---------------"
+#    echo "$sub_domain"
+#    echo "$root_domain"
+#    echo "--------------"
+    full="${sub_domain}.${root_domain}"
+    if [ -z "$2" ]; then
+        full="${full:1}"
+    fi
     # Run the dig command and capture the output, then extract the last two fields
     read -r record Ip <<< "$(dig "$full" | grep -A1 'ANSWER SECTION:' | sed -n '2p' | awk '{print $(NF-1), $NF}')"
     echo "The subdomain $sub_domain is a $record record and points to $Ip"
 }
 #sub_domains "$1" 
 
-
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
     for sub_domain in "${list_subdomains[@]}"; do
-        sub_domains "$sub_domain"
+        sub_domains "$domain" "$sub_domain"
     done
 else
     # If subdomain provided, get IP address for that subdomain
-    sub_domains "$1"
+    sub_domains "$1" "$2"
 fi
