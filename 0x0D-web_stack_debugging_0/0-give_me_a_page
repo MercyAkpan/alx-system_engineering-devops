@@ -2,7 +2,7 @@
 # This is a script to run an Apache server on a docker container
 sudo apt update
 sudo apt install apache2 -y #(To install the Apache server into the container)
-sudo service apache2 status #(get the status of apache2 server)
 sudo service apache2 start #(Start Apache Server)
+sudo service apache2 status #(get the status of apache2 server)
 sudo service apache2 restart
 echo 'Hello Holberton' >  /var/www/html/index.html
