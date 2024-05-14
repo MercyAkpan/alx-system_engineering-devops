@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+# iptables is the framework "ufw" works on. It is more complex than ufw. 
+# Imagine iptables as a powerful but complex engine under the hood of your car. UFW acts as the user-friendly dashboard that lets you control the car's core
+sudo ufw status
+sudo ufw allow OpenSSH
+sudo ufw allow 22
+sudo ufw allow 443/tcp
+sudo ufw allow 80/tcp
+sudo ufw enable
+sudo ufw status verbose
+# sudo ufw disable
