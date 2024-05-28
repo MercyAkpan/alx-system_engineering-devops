@@ -5,5 +5,5 @@ docker start docker-nginx
 docker exec -i docker-nginx /bin/bash << 'EOF'
 new_string="http {\n    server {\n\tlisten\t\t80;\n\t}"
 sed -i "s#http {#$new_string#"  /etc/nginx/nginx.conf 
-cat /etc/nginx/nginx.conf
 EOF
+curl --head 0:80
