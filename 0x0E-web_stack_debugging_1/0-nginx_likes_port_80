@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# installing an nginx image in a docker container
+docker run --name docker-nginx -p 80:80 -d nginx
