@@ -2,3 +2,8 @@
 # installing an nginx image in a docker container
 docker run --name docker-nginx -p 80:80 -d nginx
 docker start docker-nginx
+docker exec -i docker-nginx /bin/bash << 'EOF'
+new_string="http {\n    server {\n\tlisten\t\t80;\n\t}"
+sed -i "s#http {#$new_string#"  /etc/nginx/nginx.conf 
+cat /etc/nginx/nginx.conf
+EOF
