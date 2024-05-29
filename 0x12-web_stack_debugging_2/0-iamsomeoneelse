@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 # This is a trial
-su - "$1" <<EOF
-whoami
-EOF
+su -c "whoami" -s /bin/bash "$1"
