@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This is a trial
+su - "$1" <<EOF
+whoami
+EOF
