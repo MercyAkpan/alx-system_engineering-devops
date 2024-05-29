@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo ln -sf /etc/nginx/sites-available/default  /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo service nginx restart
