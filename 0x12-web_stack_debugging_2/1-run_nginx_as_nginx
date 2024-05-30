@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-# Define the path to the nginx configuration file
-NGINX_CONF="/etc/nginx/nginx.conf"
+# define the path to the nginx configuration file
+nginx_conf="/etc/nginx/nginx.conf"
 
-# Ensure the user directive is set to 'nginx'
-sed -i 's/^user .*/user nginx;/' $NGINX_CONF
+# ensure the user directive is set to 'nginx'
+sed -i 's/^user .*/user nginx;/' $nginx_conf
 
-# Ensure nginx is listening on port 8080 on all active IPs
-sed -i 's/listen [0-9]*;/listen 8080;/g' $NGINX_CONF
-
-# Restart nginx to apply the changes
-service nginx restart
-
+if grep -q 'http {' $nginx_conf; then
+        sed -i '/http {/a \ \ \ \ server {\n\ \ \ \ \ \ \ \ listen 8080;\n\ \ \ \ \ \ \ \ server_name localhost;\n\n\ \ \ \ \ \ \ \ location / {\n\ \ \ \ \ \ \ \ \ \ \ \ root /usr/share/nginx/html;\n\ \ \ \ \ \ \ \ \ \ \ \ index index.html index.htm;\n\ \ \ \ \ \ \ \ }\n\ \ \ \ }' $nginx_conf
+fi
+# restart nginx to apply the changes
+service nginx reload
