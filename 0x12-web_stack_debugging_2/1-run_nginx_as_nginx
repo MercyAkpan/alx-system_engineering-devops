@@ -9,4 +9,4 @@ if grep -q 'http {' $nginx_conf; then
         sed -i '/http {/a \ \ \ \ server {\n\ \ \ \ \ \ \ \ listen 8080;\n\ \ \ \ \ \ \ \ server_name localhost;\n\n\ \ \ \ \ \ \ \ location / {\n\ \ \ \ \ \ \ \ \ \ \ \ root /usr/share/nginx/html;\n\ \ \ \ \ \ \ \ \ \ \ \ index index.html index.htm;\n\ \ \ \ \ \ \ \ }\n\ \ \ \ }' $nginx_conf
 fi
 # restart nginx to apply the changes
-service nginx reload
+service nginx restart 
