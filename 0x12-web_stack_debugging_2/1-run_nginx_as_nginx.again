@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# define the path to the nginx configuration file
+chown -R nginx:nginx /usr/share/nginx
+chmod 644 /etc/nginx/nginx.conf 
