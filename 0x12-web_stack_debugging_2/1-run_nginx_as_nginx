@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Define the path to the nginx configuration file
 NGINX_CONF="/etc/nginx/nginx.conf"
 
