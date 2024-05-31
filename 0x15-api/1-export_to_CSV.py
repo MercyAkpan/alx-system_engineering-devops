@@ -6,9 +6,9 @@
     processes the data, and prints information about completed tasks
     for a specific user.
 """
+import csv
 import requests # This is easier to use than urllib
 import sys # For command line args
-import csv
 if __name__ == "__main__":
     user_id = sys.argv[1]
 # print(type(user_id))
