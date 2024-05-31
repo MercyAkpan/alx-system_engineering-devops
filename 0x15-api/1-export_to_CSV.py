@@ -44,13 +44,11 @@ if __name__ == "__main__":
                        # and task.get('completed') is True]
         # Formatted text
         files = f"{user_id}.csv"
-        print(files)
         with open(files, 'w', newline='') as csvfile:
         # no fieldnames
             fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
             thewriter = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL) 
             for task in tasks_user1:
-                print(task)
                 thewriter.writerow({'USER_ID': task['userId'], 'USERNAME': username, 'TASK_COMPLETED_STATUS': task['completed'], 'TASK_TITLE': task['title']})
     except Exception as e:
         #  Handle errors gracefully, e.g. log the error and return an error message
