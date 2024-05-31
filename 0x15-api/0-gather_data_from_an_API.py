@@ -40,26 +40,28 @@ if __name__ == "__main__":
         todo_response = requests.get(todo_api_url)
         todo_data = todo_response.json()
 #         print("done")
-        task_user= sum(1 for task in todo_data if task.get('userId') == int(user_id))
+        task_user = sum(1 for task in todo_data
+                        if task.get('userId') == int(user_id))
 # print(task_user)
-        task_user_completed= sum(1 for task in todo_data if task.get('userId') == int(user_id) and task.get('completed') == True)
+        task_user_completed = sum(1 for task in todo_data
+                                  if task.get('userId') == int(user_id)
+                                  and task.get('completed') is True)
 #         print(task_user_completed)
-        tasks_user1 = [task for task in todo_data if task.get('userId') == int(user_id) and task.get('completed') == True]
+        tasks_user1 = [task for task in todo_data
+                       if task.get('userId') == int(user_id)
+                       and task.get('completed') is True]
 #         print(len(tasks_user1))
 #         print("*****************")
-        print(f"Employee {username} is done with tasks({task_user_completed}/{task_user}):")
+        text = f"Employee {username} is done with" + \
+               f"tasks({task_user_completed}/" + \
+               f"{task_user}):"
+
+        print(text)
         for task in tasks_user1:
-# # print("here")
-#             count += 1
-# #     print(task)
-#             if task['completed'] == True:
-#                 done += 1
-#             
-                print(f"\t {task['title']}")
-#         print (count)
-#         print(done)
+            print(f"\t {task['title']}")
     except Exception as e:
-        #  Handle errors gracefully, e.g., log the error and return an error message
+        #  Handle errors gracefully, e.g.,
+        #  log the error and return an error message
         print(f"Error: {e}")
 # return json.dumps({"error": str(e)})
 
