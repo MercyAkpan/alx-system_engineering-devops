@@ -52,7 +52,7 @@ if __name__ == "__main__":
                        and task.get('completed') is True]
 #         print(len(tasks_user1))
 #         print("*****************")
-        text = f"Employee {username} is done with" + \
+        text = f"Employee {username} is done with " + \
                f"tasks({task_user_completed}/" + \
                f"{task_user}):"
 
