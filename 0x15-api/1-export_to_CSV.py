@@ -32,7 +32,7 @@ if __name__ == "__main__":
         users_api_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
         user_response = requests.get(users_api_url)
         user_data = user_response.json() # have it readable JSON format.
-        username = user_data["name"]
+        username = user_data["username"]
         # 2. Extract todo Data from Todo API
         todo_api_url = f"https://jsonplaceholder.typicode.com/todos/"
         todo_response = requests.get(todo_api_url)
