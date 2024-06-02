@@ -33,7 +33,7 @@ if __name__ == "__main__":
         user_response = requests.get(users_api_url)
         user_data = user_response.json()  # have it readable JSON format.
         usernames = {user["id"]: user["username"] for user in user_data}
-        print("Usernames:", usernames)
+#        print("Usernames:", usernames)
 
 #        print(user_data) # List of dicts
 #        username = user_data[0]["username"]
