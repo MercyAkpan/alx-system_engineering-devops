@@ -11,7 +11,6 @@ from collections import OrderedDict
 import requests  # This is easier to use than urllib
 import sys  # For command line args
 if __name__ == "__main__":
-#    user_id = sys.argv[1]
 
     def get_to_do_list():
         """
@@ -26,7 +25,7 @@ if __name__ == "__main__":
         A JSON file with all tasks assigned to user,(using username)
         """
 
-#    try:
+    try:
 #        print("ok")
         #  1. Fetch User Data from Users API
         users_api_url = f"https://jsonplaceholder.typicode.com/users/"
@@ -100,9 +99,9 @@ if __name__ == "__main__":
 #            print("nowhere")
 #            print(newdict)
             json_string = json.dump(grouped_tasks, jsonfile)
-#   except Exception as e:
+    except Exception as e:
         #  Handle errors gracefully,
         #  e.g. log the error and return an error message
-#        print(f"Error: {e}")
+        print(f"Error: {e}")
     # call the above method
     get_to_do_list()
