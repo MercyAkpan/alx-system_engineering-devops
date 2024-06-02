@@ -26,78 +26,56 @@ if __name__ == "__main__":
         """
 
     try:
-#        print("ok")
         #  1. Fetch User Data from Users API
         users_api_url = f"https://jsonplaceholder.typicode.com/users/"
         user_response = requests.get(users_api_url)
         user_data = user_response.json()  # have it readable JSON format.
+        # This creates a dictionary :
+        # which has the key = userId, and value = username
         usernames = {user["id"]: user["username"] for user in user_data}
-#        print("Usernames:", usernames)
 
-#        print(user_data) # List of dicts
-#        username = user_data[0]["username"]
-#        print(username)
         # 2. Extract todo Data from Todo API
         todo_api_url = f"https://jsonplaceholder.typicode.com/todos/"
         todo_response = requests.get(todo_api_url)
         todo_data = todo_response.json()
-        # Note: tasks_user is a list of dictionaries
+        # Note: tasks_user is a list of dictionaries of all tasks.
         tasks_user = [task for task in todo_data]
-#        for task in tasks_user:
-#            print(task)
-#            print()
-        # if task.get('userId') == int(user_id)]
-        # File to save it in.
-#        print(type(tasks_user))
-        files = f"todo_all_employees.json"
-        # Reorder the keys of the dictionary
+        # This creates a dictionary:
+        # with user id, as key and an empty list for each entry.
+        # To be used on line
         grouped_tasks = {user["id"]: [] for user in user_data}
+        # Reorder the keys of the dictionary
         ordered_keys = ["username", "title", "completed"]
         # Print the reordered dictionary
         # Open a JSON file, new or existing.
+        files = f"todo_all_employees.json"
         with open(files, 'w', newline='') as jsonfile:
             # Removing "id" key, adding "username" key
             key_to_remove = "id"
             new_key = "username"
             for d in tasks_user:
-#               print()
-#               print(d)
-                   #print(type(task))
-                    #print("yess")
-#                print(d)
+                # makes user = userId of tasks. [distinct id]
                 user = d["userId"]
+                # checks if id is a key in usernames
                 if user in usernames:
+                    # This creates username variable, according to user id.
                     username1 = usernames[user]
-#                        print("nope")
-#                            print("1")
-                            # Remove the key from the dictionary
+                    # Remove the key from the dictionary
                     d.pop(key_to_remove, None)  # None is the default value
-                           #                           if the key does not exist
-                        # Add the new key-value pair to the dictionary
-#                            print("2")
-#                            print(new_value)
-#                            print()
+                    #                           if the key does not exist
+                    # Add the new key-value pair to the dictionary
                     d[new_key] = username1
-#                        print(d)
-                        # Makes a new list of tuples, with key,value pair in each tuple
-                        # Changes the "title" key to "task", and re-order keys
-#                            print("3")
+                    # Makes a list of tuples, with key,value pair in each tuple
+                    # Changes the "title" key to "task", and re-order keys
                     reordered_items = [("task" if key == "title" else key,
-                                            d[key]) for key in ordered_keys]
+                                        d[key]) for key in ordered_keys]
                     # Clear old dictionary
                     d.clear()
                 # Update the dictionary with the reordered items
                     d.update(reordered_items)
+                    # Appends the dictionary
+                    # to the corresponding user id value,which is a list.
                     grouped_tasks[user].append(d)
-#                        print(d)
-#                    print("out")
-#                        print("4") 
-##                print(d) # How am i able to access the last 'd', out of scope.
-#            print(tasks_user)
-#            print(grouped_tasks)
-#            newdict = {tasks_user}
-#            print("nowhere")
-#            print(newdict)
             json_string = json.dump(grouped_tasks, jsonfile)
     except Exception as e:
         #  Handle errors gracefully,
