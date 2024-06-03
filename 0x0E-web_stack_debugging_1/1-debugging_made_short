@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Better to do sudo ln -sbf file1 file2 - to create backup of file2, before overwiting it.
+sudo ln -sf /etc/nginx/sites-available/default  /etc/nginx/sites-enabled/default
+sudo service nginx restart
+pkill -o nginx
