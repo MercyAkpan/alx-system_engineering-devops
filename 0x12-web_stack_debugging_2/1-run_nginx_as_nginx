@@ -1,4 +1,21 @@
 #!/usr/bin/env bash
-#define the path to the nginx configuration file
-chown -R nginx:nginx /usr/share/nginx
-chmod 644 /etc/nginx/nginx.conf 
+# Debug web stack by running nginx with nginx user and listening on port
+# 8080
+
+# search and replace user directive
+conf="/etc/nginx/nginx.conf"
+sudo sed -i 's/#user www-data;/user nginx;/g' $conf
+sudo chmod 644 $conf
+
+# replace 80 with 8080 in sites config. and refresh symlink
+sites_a="/etc/nginx/sites-available/default"
+sites_e="/etc/nginx/sites-enabled/default"
+sudo sed -i 's/80/8080/g' $sites_a
+sudo rm $sites_e
+sudo ln -s $sites_a $sites_e
+
+# kill apache2
+sudo kill "$(pgrep -o apache2)"
+
+# start nginx as nginx user
+sudo -u nginx service nginx start
