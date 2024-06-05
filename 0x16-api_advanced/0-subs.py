@@ -13,7 +13,8 @@ def number_of_subscribers(subreddit):
         users_api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
         headers = {'User-Agent': 'MyRedditApp/1.0'}
         # user_response always returns status code
-        user_response = requests.get(users_api_url, headers=headers, allow_redirects=False)
+        user_response = requests.get(users_api_url,
+                                     headers=headers, allow_redirects=False)
         user_response.raise_for_status()
         user_data = user_response.json()  # have it readable JSON format.
         return user_data["data"]["subscribers"]
