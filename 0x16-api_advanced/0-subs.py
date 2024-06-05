@@ -17,7 +17,7 @@ def number_of_subscribers(subreddit):
                                      headers=headers, allow_redirects=False)
         user_response.raise_for_status()
         user_data = user_response.json()  # have it readable JSON format.
-        return user_data["data"]["subscribers"]
+        return int(user_data["data"]["subscribers"])
     except requests.exceptions.HTTPError as errh:
         if user_response.status_code == 404:
             return 0
