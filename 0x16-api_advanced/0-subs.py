@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+    This is used to obtain number of subs in a subreddit again
+"""
 import requests
 
 
